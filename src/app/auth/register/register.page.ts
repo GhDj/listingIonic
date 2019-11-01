@@ -1,5 +1,6 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'; 
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, ViewChild  } from '@angular/core'; 
 import { Router } from  "@angular/router";
+import {  IonSlides  } from "@ionic/angular";
 //import { AuthService } from '../auth.service';
 //import { MDBBootstrapModule } from 'angular-bootstrap-md'
     
@@ -8,8 +9,12 @@ import { Router } from  "@angular/router";
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
-export class RegisterPage implements OnInit {
-
+export class RegisterPage {
+  @ViewChild('slides', { static: true }) slides: IonSlides;
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
   constructor(
     //private  authService:  AuthService, 
     private  router:  Router) { }
@@ -21,6 +26,14 @@ export class RegisterPage implements OnInit {
    // this.authService.register(form.value).subscribe((res) => {
     //  this.router.navigateByUrl('home');
     //});
+  }
+
+  goToSlideTwo() {
+    this.slides.slideTo(1);
+  }
+
+  goToSlideOne() {
+    this.slides.slideTo(0);
   }
 
 }
